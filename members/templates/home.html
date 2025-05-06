@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleCo. - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        
+body {
+    font-family: 'Urbanist', sans-serif;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 400px;
+}
+.login-input {
+    border: 2px solid #131313;
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+.social-icon {
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    transition: transform 0.3s ease;
+    color: #FFFFFF;
+}
+.social-icon:hover {
+    transform: scale(1.2);
+    color: #D9D9D9;
+}
+.carousel-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    margin: 0 0.25rem;
+    cursor: pointer;
+}
+.carousel-dot.active {
+    background-color: #071937;
+}
+.top-bar {
+    background-color: #F1F6FC;
+    color: #131313;
+    text-align: center;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+.navbar {
+    background-color: #071937;
+    color: #FFFFFF;
+}
+.category-table {
+    background-color: #FFFFFF;
+    color: #131313;
+    border-collapse: collapse;
+    width: 200px;
+}
+.category-table th {
+    background-color: #071937;
+    color: #FFFFFF;
+    padding: 0.5rem;
+    font-weight: 600;
+}
+.category-table td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #D9D9D9;
+}
+.category-table tr:hover {
+    background-color: #D9D9D9;
+    cursor: pointer;
+}
+
+    </style>
+   
+</head>
+<body class="bg-[#FFFFFF] text-[#131313] min-h-screen flex flex-col">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <p>SALE : upto 70% off*</p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar p-4 sticky top-0 z-10 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">StyleCo.</h1>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <input id="search" type="text" placeholder="Search..." class="p-2 pl-10 rounded-full border border-[#D9D9D9] w-64 text-[#686868] bg-[#FFFFFF] focus:outline-none">
+                    <span class="absolute left-3 top-2.5 text-[#686868]"><i class="fas fa-search"></i></span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#cart" onclick="checkLogin('cart')" class="relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-[#FFFFFF] text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </a>
+                    <span><i class="fas fa-heart"></i></span>
+                    <a href="categories.html" onclick="showLogin()"><i class="fas fa-user"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto mt-4 flex justify-center space-x-8 text-base">
+            <a href="home.html" class="hover:underline hover:text-[#D9D9D9] transition">Home</a>
+            <div class="relative group">
+                <span class="hover:underline hover:text-[#D9D9D9] flex items-center transition cursor-pointer" >  <a href="categories.html"  onclick="categories.html" class="hover:underline hover:text-[#D9D9D9] transition" >Categories </a></span><span class="ml-1">▼</span></span>
+                <div class="absolute hidden group-hover:block bg-[#FFFFFF] text-[#131313] shadow-lg rounded p-2 z-20">
+                    <table class="category-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr onclick="checkLogin('category')">
+                                <td>Boys</td>
+                            </tr>
+                            <tr onclick="checkLogin('category')">
+                                <td>Girls</td>
+                            </tr>
+                            <tr onclick="checkLogin('category')">
+                                <td>Men</td>
+                            </tr>
+                            <tr onclick="checkLogin('category')">
+                                <td>Women</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a href="#sale" class="hover:underline hover:text-[#D9D9D9] transition">Sale</a>
+            <a href="#about" class="hover:underline hover:text-[#D9D9D9] transition">About Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-16 bg-[#F1F6FC]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bold mb-8">REFLECT YOUR STYLE</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="h-80 bg-[#D9D9D9] rounded-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800" alt="Hero Image 1" class="w-full h-full object-cover">
+                </div>
+                <div class="h-80 bg-[#D9D9D9] rounded-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800" alt="Hero Image 2" class="w-full h-full object-cover">
+                </div>
+                <div class="h-80 bg-[#D9D9D9] rounded-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800" alt="Hero Image 3" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="flex justify-center mt-6">
+                <span class="carousel-dot active"></span>
+                <span class="carousel-dot"></span>
+                <span class="carousel-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Logos Section -->
+    <section class="py-10 bg-[#FFFFFF]">
+        <div class="container mx-auto flex justify-around items-center flex-wrap gap-6 px-4">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/LEVI%27S_logo.svg" alt="Levi's" class="h-8">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Valentino_Garavani_logo.svg" alt="Valentino Garavani" class="h-8">
+            <img src="https://upload.wikimedia.org/wikipedia/en/7/71/Ralph_Lauren_Corporation_logo.svg" alt="Ralph Lauren" class="h-8">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Gucci_Logo.svg" alt="Gucci" class="h-8">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Fendi_logo.svg" alt="Fendi" class="h-8">
+            <img src="https://upload.wikimedia.org/wikipedia/en/2/20/Adidas_Logo.svg" alt="Adidas" class="h-8">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Dolce_%26_Gabbana_logo.svg" alt="D&G" class="h-8">
+        </div>
+    </section>
+
+    <!-- Explore Today's Fashion Section -->
+    <section class="py-16 bg-[#F1F6FC]">
+        <div class="container mx-auto flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8 px-4">
+            <div class="w-full md:w-1/2 h-80 bg-[#D9D9D9] rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=800" alt="Explore Fashion" class="w-full h-full object-cover">
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <h3 class="text-4xl font-bold mb-4 leading-tight">EXPLORE TODAY'S FASHION THAT MIRRORS YOUR PERSONALITY, ELEVATING YOUR CONFIDENCE, EMBRACE STYLES, & INDIVIDUALITY.</h3>
+                <button class="mt-4 bg-[#071937] text-[#FFFFFF] px-6 py-2 rounded-full hover:bg-[#131313] transition">Explore Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Collection Section -->
+    <section class="py-16 bg-[#FFFFFF]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-4">OUR COLLECTION</h2>
+            <p class="mb-6 text-[#686868] max-w-3xl">Step into the world of StyleCo., where each collection tells its own story. From minimalist essentials to bold statement pieces, our curated collections are designed to suit every occasion and style.</p>
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex space-x-4 overflow-x-auto">
+                    <button class="border border-[#131313] text-[#FFFFFF] px-6 py-2 rounded-full bg-[#071937] whitespace-nowrap">Kurtas</button>
+                    <button class="border border-[#131313] text-[#131313] px-6 py-2 rounded-full hover:bg-[#D9D9D9] whitespace-nowrap">Winter Wear</button>
+                    <button class="border border-[#131313] text-[#131313] px-6 py-2 rounded-full hover:bg-[#D9D9D9] whitespace-nowrap">Dresses</button>
+                    <button class="border border-[#131313] text-[#131313] px-6 py-2 rounded-full hover:bg-[#D9D9D9] whitespace-nowrap">Baby Onesies</button>
+                    <button class="border border-[#131313] text-[#131313] px-6 py-2 rounded-full hover:bg-[#D9D9D9] whitespace-nowrap">Skirt</button>
+                    <button class="border border-[#131313] text-[#131313] px-6 py-2 rounded-full hover:bg-[#D9D9D9] whitespace-nowrap">T-Shirt</button>
+                </div>
+                <a href="#" class="text-[#071937] hover:underline font-semibold">See ALL</a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="bg-[#D9D9D9] h-64 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800" alt="Libas Kurta" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="mt-2 font-semibold">LIBAS</h4>
+                    <p class="text-[#686868]">Mustard Solid Kurta</p>
+                    <p class="font-bold">₹ 550</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-[#D9D9D9] h-64 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1591370239633-c6e13e2c24b1?w=800" alt="W for Women" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="mt-2 font-semibold">W for Women</h4>
+                    <p class="text-[#686868]">Rust Printed Cotton</p>
+                    <p class="font-bold">₹ 1100</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-[#D9D9D9] h-64 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1602810316693-3667c854239a?w=800" alt="Anouk" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="mt-2 font-semibold">Anouk</h4>
+                    <p class="text-[#686868]">Lime Yolk Design</p>
+                    <p class="font-bold">₹ 800</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-[#D9D9D9] h-64 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1602810316498-1f54d0887be4?w=800" alt="Dressberry" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="mt-2 font-semibold">Dressberry</h4>
+                    <p class="text-[#686868]">Blue Embroidered</p>
+                    <p class="font-bold">₹ 780</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Section -->
+    <section class="py-16 bg-[#071937] text-[#FFFFFF]">
+        <div class="container mx-auto flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8 px-4">
+            <div class="w-full md:w-2/3 grid grid-cols-2 gap-4">
+                <div class="bg-[#686868] h-40 rounded-lg"></div>
+                <div class="bg-[#686868] h-40 rounded-lg"></div>
+                <div class="bg-[#686868] h-40 rounded-lg"></div>
+                <div class="bg-[#686868] h-40 rounded-lg"></div>
+            </div>
+            <div class="w-full md:w-1/3 text-center md:text-left">
+                <h3 class="text-2xl font-bold mb-2">Offer Running for All Month</h3>
+                <h2 class="text-4xl font-bold mb-4 leading-tight">50% OFF ON ALL NEW ARRIVALS</h2>
+                <button class="bg-[#FFFFFF] text-[#071937] px-6 py-2 rounded-full hover:bg-[#D9D9D9] transition">Explore More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journal Section -->
+    <section class="py-16 bg-[#FFFFFF]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-4">REFLECT YOUR JOURNAL</h2>
+            <p class="mb-6 text-[#686868] max-w-3xl">Stay updated with the latest fashion trends, style tips, and the behind-the-scenes of our collections. Get inspired and learn how to reflect your unique style every day.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div>
+                    <div class="bg-[#D9D9D9] h-64 rounded-lg mb-4 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800" alt="Journal 1" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fashion trend you should know in 2025</h3>
+                    <p class="text-[#686868] mb-4">Stay updated with the latest fashion trends, style tips, and the behind-the-scenes of our collections. Get inspired and learn how to reflect your unique style every day.</p>
+                    <button class="bg-[#071937] text-[#FFFFFF] px-6 py-2 rounded-full hover:bg-[#131313] transition">Read More</button>
+                </div>
+                <div>
+                    <div class="bg-[#D9D9D9] h-64 rounded-lg mb-4 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800" alt="Journal 2" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Summer Pieces To Transition</h3>
+                    <p class="text-[#686868] mb-4">Get inspired and learn how to reflect your unique style every day.</p>
+                    <button class="bg-[#071937] text-[#FFFFFF] px-6 py-2 rounded-full hover:bg-[#131313] transition">Read More</button>
+                </div>
+                <div>
+                    <div class="bg-[#D9D9D9] h-64 rounded-lg mb-4 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800" alt="Journal 3" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">The best fabric for Babies</h3>
+                    <p class="text-[#686868] mb-4">Get inspired and learn how to reflect your unique style every day.</p>
+                    <button class="bg-[#071937] text-[#FFFFFF] px-6 py-2 rounded-full hover:bg-[#131313] transition">Read More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-[#F1F6FC] relative">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-5xl font-bold mb-8 relative">
+                <span class="absolute top-0 left-0 w-full h-full flex justify-center items-center opacity-20 transform -rotate-12 text-[#131313] whitespace-nowrap">
+                    SUBSCRIBE OUR NEWSLETTER SUBSCRIBE OUR NEWSLETTER SUBSCRIBE OUR NEWSLETTER
+                </span>
+                SUBSCRIBE OUR NEWSLETTER
+            </h2>
+            <div class="bg-[#D9D9D9] h-64 rounded-lg mb-8 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=800" alt="Newsletter Banner" class="w-full h-full object-cover">
+            </div>
+            <div class="flex justify-center">
+                <input type="email" placeholder="Enter your Email address here" class="p-3 rounded-l-full border border-r-0 border-[#D9D9D9] w-80 text-[#686868] bg-[#FFFFFF] focus:outline-none">
+                <button class="bg-[#131313] text-[#FFFFFF] p-3 rounded-r-full hover:bg-[#071937] transition">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#071937] text-[#FFFFFF] py-12 mt-auto">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+            <div>
+                <h3 class="text-xl font-bold mb-4">NAVIGATE</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="hover:underline hover:text-[#D9D9D9] transition">Replacements, Returns & Refunds</a></li>
+                    <li><a href="#" class="hover:underline hover:text-[#D9D9D9] transition">News & Promotions</a></li>
+                    <li><a href="#about" class="hover:underline hover:text-[#D9D9D9] transition">About Us</a></li>
+                    <li><a href="#" class="hover:underline hover:text-[#D9D9D9] transition">Terms of Service</a></li>
+                    <li><a href="#" class="hover:underline hover:text-[#D9D9D9] transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:underline hover:text-[#D9D9D9] transition">How to Order</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">IN-STORE SHOPPING</h3>
+                <p class="mb-2">House of StyleCo.</p>
+                <p class="mb-2">South Fairlands,</p>
+                <p>Salem - 636 302</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">StyleCo.</h3>
+                <p class="mb-2">Reg: SI203014054</p>
+                <p class="mb-2">TIN: 109201GST1204</p>
+                <p class="mb-2">Phone: +91 90121 90121</p>
+                <p>Email: styleco@gmail.com</p>
+            </div>
+        </div>
+        <div class="container mx-auto mt-10 flex justify-center space-x-6">
+            <a href="#" class="social-icon" onclick="openSocialMedia('twitter')"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon" onclick="openSocialMedia('facebook')"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" onclick="openSocialMedia('instagram')"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" onclick="openSocialMedia('youtube')"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon" onclick="openSocialMedia('linkedin')"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon" onclick="openSocialMedia('tiktok')"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div class="container mx-auto mt-6 text-center">
+            <p>StyleCo. © 2022</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center">Please Log In</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-[#131313]">Email Address</label>
+                    <input id="email" type="email" placeholder="Enter your Email Id" class="login-input text-[#686868]">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-[#131313]">Password</label>
+                    <input id="password" type="password" placeholder="Enter your Password" class="login-input text-[#686868]">
+                </div>
+            </div>
+            <div class="flex justify-between items-center mt-6">
+                <button onclick="closeLogin()" class="border border-[#131313] text-[#131313] px-4 py-2 rounded hover:bg-[#D9D9D9] transition">Cancel</button>
+                <button onclick="handleLogin()" class="bg-[#071937] text-[#FFFFFF] px-4 py-2 rounded hover:bg-[#131313] transition">Log In</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isLoggedIn = false;
+        let cart = [];
+
+        // Show login modal
+        function showLogin() {
+            document.getElementById('login-modal').style.display = 'flex';
+        }
+
+        // Close login modal
+        function closeLogin() {
+            document.getElementById('login-modal').style.display = 'none';
+        }
+
+        // Check if user is logged in before proceeding to cart or categories
+        function checkLogin(action) {
+            if (!isLoggedIn) {
+                showLogin();
+            } else {
+                if (action === 'cart') {
+                    alert('Proceeding to cart...');
+                    // Add cart navigation logic here
+                } else if (action === 'category') {
+                    alert('Navigating to categories...');
+                    // Add category navigation logic here
+                }
+            }
+        }
+
+        // Handle login
+        function handleLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            if (email && password) {
+                isLoggedIn = true;
+                alert('Login successful! Welcome back.');
+                closeLogin();
+            } else {
+                alert('Please enter both email and password.');
+            }
+        }
+
+        // Open social media links
+        function openSocialMedia(platform) {
+            const urls = {
+                twitter: 'https://twitter.com',
+                facebook: 'https://facebook.com',
+                instagram: 'https://instagram.com',
+                youtube: 'https://youtube.com',
+                linkedin: 'https://linkedin.com',
+                tiktok: 'https://tiktok.com'
+            };
+            window.open(urls[platform], '_blank');
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Urbanist', sans-serif;
+}
+        
+body {
+    font-family: 'Urbanist', sans-serif;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 400px;
+}
+.login-input {
+    border: 2px solid #131313;
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+.social-icon {
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    transition: transform 0.3s ease;
+    color: #FFFFFF;
+}
+.social-icon:hover {
+    transform: scale(1.2);
+    color: #D9D9D9;
+}
+.carousel-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    margin: 0 0.25rem;
+    cursor: pointer;
+}
+.carousel-dot.active {
+    background-color: #071937;
+}
+.top-bar {
+    background-color: #F1F6FC;
+    color: #131313;
+    text-align: center;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+.navbar {
+    background-color: #071937;
+    color: #FFFFFF;
+}
+.category-table {
+    background-color: #FFFFFF;
+    color: #131313;
+    border-collapse: collapse;
+    width: 200px;
+}
+.category-table th {
+    background-color: #071937;
+    color: #FFFFFF;
+    padding: 0.5rem;
+    font-weight: 600;
+}
+.category-table td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #D9D9D9;
+}
+.category-table tr:hover {
+    background-color: #D9D9D9;
+    cursor: pointer;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Urbanist', sans-serif;
+}
+
+body {
+    background-color: #FFFFFF; /* White background */
+    color: #131313; /* Dark text color */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns for first row */
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.categories-row2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns for second row */
+    gap: 20px;
+}
+
+.category-item {
+    text-align: center;
+    text-decoration: none; /* Remove underline from links */
+    transition: transform 0.2s ease;
+}
+
+.category-item:hover {
+    transform: scale(1.05); /* Slight scale on hover */
+}
+
+.category-item:hover div {
+    background-color: #686868; /* Gray color on hover for placeholder div */
+}
+
+.category-item:hover p {
+    color: #686868; /* Gray color on hover for category text */
+}
+
+.category-item div {
+    width: 100%;
+    height: 200px;
+    background-color: #D9D9D9; /* Placeholder for images */
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.category-item p {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #131313; /* Dark text for category names */
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+footer {
+    background-color: #071937; /* Dark blue footer background */
+    color: #FFFFFF; /* White text */
+    padding: 40px 20px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-section {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #FFFFFF;
+    padding-bottom: 5px;
+}
+
+.footer-section p, .footer-section a {
+    font-size: 14px;
+    color: #F1F6FC; /* Light blue text for footer content */
+    line-height: 1.6;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: #D9D9D9; /* Light gray on hover */
+}
+
+@media (max-width: 768px) {
+    .categories, .categories-row2 {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

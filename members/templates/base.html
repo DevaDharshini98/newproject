@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StyleCo{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar with Normal HTML Links -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand">StyleCo</a>
+            <div class="navbar-links">
+                <a href="/">Home</a>
+                <a href="/categories/">Categories</a>
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+                <a href="/add-to-cart/">Add to Cart</a>
+                <a href="/product-details/">Product Details</a>
+                <a href="/cart/">Cart</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Navigate</h3>
+                <p><a href="#">Replacements, Returns & Refunds</a></p>
+                <p><a href="#">News & Promotions</a></p>
+                <p><a href="/about/">About Us</a></p>
+                <p><a href="#">Terms of Service</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>In-Store Shopping</h3>
+                <p>House of StyleCo.</p>
+                <p>South Fairlands,</p>
+                <p>Salem - 636 302</p>
+            </div>
+            <div class="footer-section">
+                <h3>StyleCo.</h3>
+                <p>Reg: SI203014054</p>
+                <p>TIN: 109201GST1204</p>
+                <p>Phone: +91 9021 9021</p>
+                <p>Email: styleco@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
