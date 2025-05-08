@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sale Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/test_project/static/css/style.css">
+ 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Urbanist', sans-serif;
+    }
+    .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 400px;
+}
+.login-input {
+    border: 2px solid #131313;
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+.social-icon {
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    transition: transform 0.3s ease;
+    color: #FFFFFF;
+}
+.social-icon:hover {
+    transform: scale(1.2);
+    color: #D9D9D9;
+}
+.carousel-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    margin: 0 0.25rem;
+    cursor: pointer;
+}
+.carousel-dot.active {
+    background-color: #071937;
+}
+.top-bar {
+    background-color: #F1F6FC;
+    color: #131313;
+    text-align: center;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+.navbar {
+    background-color: #071937;
+    color: #FFFFFF;
+}
+.category-table {
+    background-color: #FFFFFF;
+    color: #131313;
+    border-collapse: collapse;
+    width: 200px;
+}
+.category-table th {
+    background-color: #071937;
+    color: #FFFFFF;
+    padding: 0.5rem;
+    font-weight: 600;
+}
+.category-table td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #D9D9D9;
+}
+.category-table tr:hover {
+    background-color: #D9D9D9;
+    cursor: pointer;
+}
+
+
+    
+
+    body {
+      background-color: #FFFFFF;
+      color: #131313;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #071937;
+      color: #FFFFFF;
+    }
+
+    .header .login {
+      display: flex;
+      gap: 10px;
+    }
+
+    .header .login a, .header .login button {
+      background-color: #FFFFFF;
+      color: #071937;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .filters {
+      width: 200px;
+      padding: 10px;
+    }
+
+    .filter-section {
+      margin-bottom: 20px;
+    }
+
+    .filter-section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .filter-section label {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #686868;
+    }
+
+    .filter-section input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    .products-section {
+      flex: 1;
+    }
+
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .products-header p {
+      font-size: 14px;
+      color: #686868;
+    }
+
+    .sort-by {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .sort-by select {
+      margin-left: 8px;
+      padding: 5px;
+      border: 1px solid #D9D9D9;
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      color: #131313;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: #FFFFFF;
+      border: 1px solid #D9D9D9;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card h4 {
+      font-size: 14px;
+      font-weight: 500;
+      margin: 10px 0;
+      color: #131313;
+    }
+
+    .price {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .price .original {
+      text-decoration: line-through;
+      color: #686868;
+      margin-right: 8px;
+    }
+
+    .price .discounted {
+      color: #071937;
+      font-weight: 600;
+    }
+
+    .add-to-cart {
+      display: inline-block;
+      background-color: #071937;
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 10px;
+      width: 100%;
+      font-size: 14px;
+      font-weight: 500;
+      border: 2px solid #071937;
+      border-radius: 4px;
+      background: linear-gradient(to right, #071937 50%, #131313 50%);
+      background-size: 200% 100%;
+      background-position: left bottom;
+      transition: background-position 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+      background-position: right bottom;
+      color: #F1F6FC;
+      border-color: #131313;
+    }
+  </style>
+</head>
+<body class="bg-[#FFFFFF] text-[#131313] min-h-screen flex flex-col">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <p>SALE : upto 70% off*</p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar p-4 sticky top-0 z-10 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">StyleCo.</h1>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <input id="search" type="text" placeholder="Search..." class="p-2 pl-10 rounded-full border border-[#D9D9D9] w-64 text-[#686868] bg-[#FFFFFF] focus:outline-none">
+                    <span class="absolute left-3 top-2.5 text-[#686868]"><i class="fas fa-search"></i></span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#cart" onclick="checkLogin('cart')" class="relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-[#FFFFFF] text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </a>
+                    <span><i class="fas fa-heart"></i></span>
+                    <a href="categories.html" onclick="showLogin()"><i class="fas fa-user"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto mt-4 flex justify-center space-x-8 text-base">
+            <a href="home.html" class="hover:underline hover:text-[#D9D9D9] transition">Home</a>
+            <div class="relative group">
+                <span class="hover:underline hover:text-[#D9D9D9] flex items-center transition cursor-pointer" >  <a href="categories.html"  onclick="categories.html" class="hover:underline hover:text-[#D9D9D9] transition" >Categories </a></span><span class="ml-1">▼</span></span>
+                <div class="absolute hidden group-hover:block bg-[#FFFFFF] text-[#131313] shadow-lg rounded p-2 z-20">
+                    <table class="category-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr onclick="checkLogin('category')">
+                                <td>Boys</td>
+                            </tr>
+                            <tr onclick="checkLogin('category')">
+                                <td>Girls</td>
+                            </tr>
+                            <tr onclick="checkLogin('category')">
+                                <td>Men</td>
+                            </tr>
+                            <tr onclick="checkLogin('category')">
+                                <td>Women</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a href="#sale" class="hover:underline hover:text-[#D9D9D9] transition">Sale</a>
+            <a href="#about" class="hover:underline hover:text-[#D9D9D9] transition">About Us</a>
+        </div>
+    </nav>
+
+
+  <h1>SALE</h1>
+
+  <div class="container">
+    <div class="filters">
+      <div class="filter-section">
+        <h3>Gender</h3>
+        <label><input type="checkbox"> Men</label>
+        <label><input type="checkbox"> Women</label>
+        <label><input type="checkbox"> Boys</label>
+        <label><input type="checkbox"> Girls</label>
+        <label><input type="checkbox"> Baby Boy</label>
+        <label><input type="checkbox"> Baby Girl</label>
+        <label><input type="checkbox"> Newborn</label>
+      </div>
+
+      <div class="filter-section">
+        <h3>Size</h3>
+        <label><input type="checkbox"> XS</label>
+        <label><input type="checkbox"> S</label>
+        <label><input type="checkbox"> M</label>
+        <label><input type="checkbox"> L</label>
+        <label><input type="checkbox"> XL</label>
+        <label><input type="checkbox"> XXL</label>
+      </div>
+
+      <div class="filter-section">
+        <h3>Brand</h3>
+        <label><input type="checkbox"> Anouk</label>
+        <label><input type="checkbox"> Adidas</label>
+        <label><input type="checkbox"> D&G</label>
+        <label><input type="checkbox"> Levi's</label>
+        <label><input type="checkbox"> Fendi</label>
+        <label><input type="checkbox"> Gucci</label>
+        <label><input type="checkbox"> H&M</label>
+        <label><input type="checkbox"> SnooZip</label>
+        <label><input type="checkbox"> Valentino</label>
+      </div>
+    </div>
+
+    <div class="products-section">
+      <div class="products-header">
+        <p>SHOWING 1-16 OF 26 PRODUCTS</p>
+        <div class="sort-by">
+          Sort by:
+          <select>
+            <option>Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="/test_project/members/templates/category/b1.jpeg" alt="Product Image">
+          <h4>GIRL KID BAGGY JEAN</h4>
+          <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+          <a href="#" class="add-to-cart" onclick="addToCart(event, 'Girl Kid Baggy Jean', 520)">ADD TO CART</a>
+        </div>
+        <div class="product-card">
+          <img src="/test_project/members/templates/category/d2.jpeg" alt="Product Image">
+          <h4>KIDS BOY BAGGY JEAN</h4>
+          <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+          <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+        </div>
+        <div class="product-card">
+          <img src="/test_project/members/templates/category/m1.jpeg" alt="Product Image">
+          <h4>KIDS BOY BAGGY JEAN</h4>
+          <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+          <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+        </div>
+        <div class="product-card">
+          <img src="/test_project/members/templates/category/g1.png" alt="Product Image">
+          <h4>KIDS BOY BAGGY JEAN</h4>
+          <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+          <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+        </div>
+        <div class="product-card">
+          <img src="/test_project/members/templates/category/g1.png" alt="Product Image">
+          <h4>KIDS BOY BAGGY JEAN</h4>
+          <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+          <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+        </div>
+        <div class="product-card">
+          <img src="/test_project/members/templates/category/w1.jpeg" alt="Product Image">
+          <h4>KIDS BOY BAGGY JEAN</h4>
+          <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+          <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+        </div>
+        <div class="product-card">
+          <img src="/test_project/members/templates/category/d2.jpeg" alt="Product Image">
+          <h4>KIDS BOY BAGGY JEAN</h4>
+          <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+          <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+        </div>
+        <div class="product-card">
+          <img src="/test_project/members/templates/category/g1.png" alt="Product Image">
+          <h4>KIDS BOY BAGGY JEAN</h4>
+          <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+          <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+        </div>
+        <div class="product-card">
+            <img src="/test_project/members/templates/category/g1.png" alt="Product Image">
+            <h4>KIDS BOY BAGGY JEAN</h4>
+            <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+            <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+          </div>
+          <div class="product-card">
+            <img src="/test_project/members/templates/category/d2.jpeg" alt="Product Image">
+            <h4>KIDS BOY BAGGY JEAN</h4>
+            <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+            <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+          </div>
+          <div class="product-card">
+            <img src="/test_project/members/templates/category/w1.jpeg" alt="Product Image">
+            <h4>KIDS BOY BAGGY JEAN</h4>
+            <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+            <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+          </div>
+          <div class="product-card">
+            <img src="/test_project/members/templates/category/m1.jpeg" alt="Product Image">
+            <h4>KIDS BOY BAGGY JEAN</h4>
+            <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+            <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+          </div>
+          <div class="product-card">
+            <img src="/test_project/members/templates/category/d1.jpg" alt="Product Image">
+            <h4>KIDS BOY BAGGY JEAN</h4>
+            <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+            <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+          </div>
+          <div class="product-card">
+            <img src="/test_project/members/templates/category/g1.png" alt="Product Image">
+            <h4>KIDS BOY BAGGY JEAN</h4>
+            <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+            <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+          </div>
+          <div class="product-card">
+            <img src="/test_project/members/templates/category/w1.jpeg" alt="Product Image">
+            <h4>KIDS BOY BAGGY JEAN</h4>
+            <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+            <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+          </div>
+          <div class="product-card">
+            <img src="/test_project/members/templates/category/m1.jpeg" alt="Product Image">
+            <h4>KIDS BOY BAGGY JEAN</h4>
+            <p class="price"><span class="original">₹520</span> <span class="discounted">₹520</span></p>
+            <a href="#" class="add-to-cart" onclick="addToCart(event, 'Kids Boy Baggy Jean', 520)">ADD TO CART</a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+   <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const products = [
+      { name: "Girl Kid Baggy Jean", price: 520, originalPrice: 520 },
+      { name: "Kids Boy Baggy Jean", price: 520, originalPrice: 520 },
+      { name: "Kids Boy Baggy Jean", price: 520, originalPrice: 520 },
+      { name: "Kids Boy Baggy Jean", price: 520, originalPrice: 520 },
+      { name: "Kids Boy Baggy Jean", price: 520, originalPrice: 520 },
+      { name: "Kids Boy Baggy Jean", price: 520, originalPrice: 520 },
+      { name: "Kids Boy Baggy Jean", price: 520, originalPrice: 520 },
+      { name: "Kids Boy Baggy Jean", price: 520, originalPrice: 520 }
+    ];
+
+    const productsGrid = document.getElementById('products-grid');
+    const sortSelect = document.getElementById('sort-select');
+
+    function renderProducts(productList) {
+      productsGrid.innerHTML = '';
+      productList.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+          <img src="https://via.placeholder.com/200" alt="Product Image">
+          <h4>${product.name}</h4>
+          <p class="price"><span class="original">₹${product.originalPrice}</span> <span class="discounted">₹${product.price}</span></p>
+          <a href="#" class="add-to-cart" onclick="addToCart(event, '${product.name}', ${product.price})">ADD TO CART</a>
+        `;
+        productsGrid.appendChild(productCard);
+      });
+    }
+
+    function sortProducts() {
+      const sortValue = sortSelect.value;
+      let sortedProducts = [...products];
+
+      if (sortValue === 'low-to-high') {
+        sortedProducts.sort((a, b) => a.price - b.price);
+      } else if (sortValue === 'high-to-low') {
+        sortedProducts.sort((a, b) => b.price - a.price);
+      }
+
+      renderProducts(sortedProducts);
+    }
+
+    function addToCart(event, name, price) {
+      event.preventDefault();
+      const item = { name, price, quantity: 1 };
+      const existingItem = cart.find(cartItem => cartItem.name === name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push(item);
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = 'cart.html';
+    }
+
+    sortSelect.addEventListener('change', sortProducts);
+
+    renderProducts(products);
+  </script>
+  </script>
+</body>
+</html>
